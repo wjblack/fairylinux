@@ -1,0 +1,38 @@
+diff --git a/main/linux-lts/APKBUILD b/main/linux-lts/APKBUILD
+index 883da13fa57..ca9560ba4e0 100644
+--- a/main/linux-lts/APKBUILD
++++ b/main/linux-lts/APKBUILD
+@@ -188,6 +188,10 @@ build() {
+ 	done
+ 	for i in $_flavors; do
+ 		msg "Building $i kernel"
++
++		# Copy in the FairyLinux CPIOball
++		cp "$srcdir"/../fairylinux.cpio "$srcdir"/build-$i.$CARCH/
++
+ 		cd "$srcdir"/build-$i.$CARCH
+ 
+ 		# set org in cert for modules signing
+diff --git a/main/linux-lts/lts.x86_64.config b/main/linux-lts/lts.x86_64.config
+index 4384576cc59..52f5e456fbd 100644
+--- a/main/linux-lts/lts.x86_64.config
++++ b/main/linux-lts/lts.x86_64.config
+@@ -130,7 +130,8 @@ CONFIG_MODULE_UNLOAD_TAINT_TRACKING=y
+ CONFIG_MODVERSIONS=y
+ CONFIG_MODULE_SIG=y
+ CONFIG_MODULE_SIG_SHA256=y
+-CONFIG_MODULE_COMPRESS_GZIP=y
++# CONFIG_MODULE_COMPRESS_GZIP is not set
++CONFIG_MODULE_COMPRESS_XZ=y
+ CONFIG_BLK_DEV_THROTTLING=y
+ CONFIG_BLK_CGROUP_IOLATENCY=y
+ CONFIG_PARTITION_ADVANCED=y
+@@ -3232,3 +3233,8 @@ CONFIG_IO_STRICT_DEVMEM=y
+ CONFIG_X86_DECODER_SELFTEST=y
+ CONFIG_DEBUG_NMI_SELFTEST=y
+ # CONFIG_RUNTIME_TESTING_MENU is not set
++CONFIG_DEFAULT_HOSTNAME="fairylinux"
++CONFIG_INITRAMFS_SOURCE="fairylinux.cpio"
++CONFIG_INITRAMFS_ROOT_UID=0
++CONFIG_INITRAMFS_ROOT_GID=0
++CONFIG_INITRAMFS_COMPRESSION_XZ=y

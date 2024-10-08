@@ -1,0 +1,66 @@
+# Configuration for the "default" FairyLinux kernel configuration.
+# (C) 2023 FairyLinux.org and BJ Black <bj@fairylinux.org>
+
+# This file is licensed under the GNU General Public License, Version 2.
+
+# The 'make xxxxx' target to generate the base .config file.
+TARGET defconfig
+
+# The default hostname returned by hostname(1).
+CONFIG_DEFAULT_HOSTNAME=fairylinux
+# Compress the kernel file with the XZ compressor.
+CONFIG_KERNEL_XZ=y
+# The CPIO file to embed within the kernel
+CONFIG_INITRAMFS_SOURCE=fairylinux.cpio
+# Compress the initramfs file with the XZ compressor.
+CONFIG_INITRAMFS_COMPRESSION_XZ=y
+# The /sys pseudo-filesystem for e.g. driver adjustment.
+CONFIG_SYSFS=y
+# Provide an automagic /dev pseudo-filesystem.
+CONFIG_DEVTMPFS=y
+# Enable networking support.
+CONFIG_NET=y
+# Support packet network ops, e.g. tcpdump(1).
+CONFIG_PACKET=y
+# Support UNIX-domain socket networking (i.e. socket files).
+CONFIG_UNIX=y
+# Support standard IP networks.
+CONFIG_INET=y
+# Support WiFi.
+CONFIG_CFG80211=y,
+# Expose the kernel config blob in /proc/config.gz
+CONFIG_IKCONFIG=y
+CONFIG_IKCONFIG_PROC=y
+# Provide access to kernel headers (for e.g. module compilation) via /sys/kernel/kheaders.tar.xz.
+CONFIG_IKHEADERS=y
+# Support NVMe drives.
+CONFIG_BLK_DEV_NVME=y
+# Support Wireguard VPNs.
+CONFIG_WIREGUARD=y
+# Various Ethernet adapters.
+CONFIG_IGB=y
+CONFIG_IXGBE=y
+CONFIG_USB_CATC=y
+CONFIG_USB_KAWETH=y
+CONFIG_USB_PEGASUS=y
+CONFIG_USB_RTL8150=y
+CONFIG_USB_RTL8152=y
+CONFIG_USB_USBNET=y
+CONFIG_USB_NET_CDC_EEM=y
+# Various Wifi adapters.
+CONFIG_ATH9K=y
+CONFIG_ATH9K_PCI=y
+CONFIG_ATH10K=y
+CONFIG_ATH10K_PCI=y
+CONFIG_BRCMSMAC=y
+CONFIG_BRCMFMAC=y
+CONFIG_RTL8192CE=y
+CONFIG_RTL8192SE=y
+CONFIG_RTL8192DE=y
+CONFIG_RTL8723AE=y
+CONFIG_RTL8723BE=y
+CONFIG_RTL8188EE=y
+CONFIG_RTL8192EE=y
+CONFIG_RTL8821AE=y
+CONFIG_RTL8192CU=y
+CONFIG_USB_NET_RNDIS_WLAN=y

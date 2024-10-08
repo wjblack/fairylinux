@@ -1,0 +1,9 @@
+{
+	"Variant": "Default FairyLinux Distribution - Minimal Alpine",
+	"AlpinePackages": [
+		"lynx",
+		"nmap",
+		"tcpdump",
+		"wget"
+	]
+}

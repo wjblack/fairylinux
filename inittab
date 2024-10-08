@@ -1,0 +1,29 @@
+# FairyLinux inittab - the List of Programs to Run at Boot
+# (C) 2023 by FairyLinux.org and BJ Black <bj@fairylinux.org>
+
+# Step 1.  Make mountpoints and add the required pseudo-filesystems
+#          For /proc and friends
+::sysinit:mkdir -p /proc /sys /dev /dev/shm /dev/pts
+::sysinit:mount -t proc none /prod
+::sysinit:mount -t sysfs none /sys
+::sysinit:mount -t devtmpfs none /dev
+::sysinit:mount -t devpts none /dev/pts
+::sysinit:mount -t tmpfs none /dev/shm
+
+# Step 2.  Run any scripts that happen to be in rcS
+::sysinit:/etc/init.d/rcS
+
+# Step 3.  Display the /etc/issue file and show a terminal (plus extras on the
+# other VTs).
+::sysinit:cat /etc/issue
+::askfirst:/bin/sh
+tty2::askfirst:/bin/sh
+tty3::askfirst:/bin/sh
+tty4::askfirst:/bin/sh
+
+# Step 4. The various stuff that should happen at e.g. poweroff and
+# Ctrl-Alt+Del.
+::ctrlaltdel:/sbin/reboot
+::shutdown:/sbin/swapoff -a
+::shutdown:/bin/umount -a -r
+::restart:/sbin/init
